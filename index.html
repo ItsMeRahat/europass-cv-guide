@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0b2f8a;--blue2:#1747c4;--yellow:#ffcc00;--ink:#1d2433;--muted:#5a6580;--soft:#f3f6fd;--line:#d9e0f0;--bg:#eef2fb;--card:#fff;--accent:#0b2f8a;--shadow:0 10px 30px rgba(11,47,138,.10)}
+:root{--blue:#0b2f8a;--blue2:#1747c4;--teal:#20b8ad;--teal-soft:#dff5f2;--ink:#1d2433;--muted:#5a6580;--soft:#f3f6fd;--line:#d9e0f0;--bg:#eef2fb;--card:#fff;--accent:#0b2f8a;--shadow:0 10px 30px rgba(11,47,138,.10)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8ecf6;--muted:#9aa5c0;--soft:#18233f;--line:#2a3658;--bg:#0b1120;--card:#121a30;--accent:#8fb0ff;--shadow:0 10px 30px rgba(0,0,0,.35)}}
 :root[data-theme="dark"]{--ink:#e8ecf6;--muted:#9aa5c0;--soft:#18233f;--line:#2a3658;--bg:#0b1120;--card:#121a30;--accent:#8fb0ff;--shadow:0 10px 30px rgba(0,0,0,.35)}
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -23,8 +23,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 button{font:inherit;color:inherit;cursor:pointer}
 
 /* header */
-header{flex:none;background:var(--blue);color:#fff;padding:12px 22px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--yellow)}
-.logo{flex:none;width:38px;height:38px;border-radius:10px;background:var(--yellow);color:var(--blue);display:grid;place-items:center;font-weight:700;font-size:15px}
+header{flex:none;background:var(--blue);color:#fff;padding:12px 22px;display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--teal)}
+.logo{flex:none;width:38px;height:38px;border-radius:10px;background:var(--teal);color:#062f3b;display:grid;place-items:center;font-weight:700;font-size:15px}
 .ttl{flex:1;min-width:0}
 .ttl b{display:block;font-size:18px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ttl small{opacity:.8;font-size:12.5px}
@@ -39,7 +39,7 @@ header{flex:none;background:var(--blue);color:#fff;padding:12px 22px;display:fle
 .side button .dot{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12.5px;font-weight:600;transition:.2s}
 .side button.done .dot{background:var(--accent);border-color:var(--accent);color:var(--card)}
 .side button.active{background:var(--soft);color:var(--ink);font-weight:600}
-.side button.active .dot{background:var(--yellow);border-color:var(--yellow);color:var(--blue)}
+.side button.active .dot{background:var(--teal);border-color:var(--teal);color:#062f3b}
 .side button span.t{font-size:14.5px;line-height:1.25}
 
 .stage{min-height:0;display:flex;flex-direction:column;min-width:0}
@@ -50,7 +50,7 @@ header{flex:none;background:var(--blue);color:#fff;padding:12px 22px;display:fle
 @keyframes in{from{opacity:0;transform:translateX(var(--dir,24px))}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
 .card{width:100%;max-width:780px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:26px 30px;position:relative;overflow:hidden}
-.eyebrow{display:inline-block;background:var(--yellow);color:var(--blue);font-weight:700;font-size:12px;letter-spacing:.8px;padding:2px 12px;border-radius:20px;margin-bottom:8px}
+.eyebrow{display:inline-block;background:var(--teal-soft);color:#075b60;font-weight:700;font-size:12px;letter-spacing:.8px;padding:2px 12px;border-radius:20px;margin-bottom:8px}
 h2{margin:0 0 10px;font-size:26px;line-height:1.25;color:var(--accent)}
 p{margin:0 0 12px}
 .lead{color:var(--muted)}
@@ -64,8 +64,13 @@ p{margin:0 0 12px}
 .list li i{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--card);font-style:normal;font-size:12.5px;font-weight:700;display:grid;place-items:center;margin-top:1px}
 
 .cta{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;padding:11px 22px;border-radius:12px;box-shadow:0 6px 16px rgba(11,47,138,.35);transition:.2s}
-.cta:hover{transform:translateY(-2px);background:var(--blue2)}
-.url{display:block;margin-top:8px;font-size:13px;color:var(--muted);word-break:break-all}
+.cta:hover{transform:translateY(-2px);background:var(--blue2);box-shadow:0 9px 22px rgba(11,47,138,.25)}
+.cta:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.cta.secondary{background:var(--teal);color:#062f3b;box-shadow:0 6px 16px rgba(32,184,173,.22)}
+.cta.secondary:hover{background:#45cec2}
+.link-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.link-actions .cta{justify-content:center}
+@media(max-width:520px){.link-actions .cta{width:100%}}
 .box{margin-top:6px;background:var(--soft);border-radius:14px;padding:16px 18px}
 
 table{border-collapse:separate;border-spacing:0;width:100%;margin-top:6px;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15.5px}
@@ -81,7 +86,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .check .box2{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--muted);display:grid;place-items:center;color:transparent;font-size:14px;font-weight:700;transition:.2s}
 .check input:checked+.box2{background:var(--accent);border-color:var(--accent);color:var(--card)}
 .check input:checked~.lb{opacity:.6;text-decoration:line-through}
-.check input:focus-visible+.box2{outline:3px solid var(--yellow)}
+.check input:focus-visible+.box2{outline:3px solid var(--teal)}
 .meter{margin-top:14px;display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--muted)}
 .meter .bar{flex:1;height:8px;border-radius:8px;background:var(--line);overflow:hidden}
 .meter .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
@@ -95,13 +100,13 @@ tr:nth-child(even) td{background:var(--soft)}
 .nav:disabled{opacity:.35;cursor:default}
 .dots{flex:1;display:flex;justify-content:center;gap:8px}
 .dots button{width:10px;height:10px;padding:0;border-radius:10px;border:0;background:var(--line);transition:.25s}
-.dots button.active{width:30px;background:var(--yellow)}
+.dots button.active{width:30px;background:var(--teal)}
 .dots button.done{background:var(--accent)}
 .bar-top{height:3px;background:var(--line);flex:none}
-.bar-top i{display:block;height:100%;width:0;background:var(--yellow);transition:width .35s}
+.bar-top i{display:block;height:100%;width:0;background:var(--teal);transition:width .35s}
 
 footer{flex:none;text-align:center;font-size:13.5px;padding:7px 10px;background:var(--blue);color:#fff}
-footer b{color:var(--yellow)}
+footer b{color:var(--teal)}
 
 @media (max-width:820px){
  .app{grid-template-columns:1fr}
@@ -153,7 +158,7 @@ footer b{color:var(--yellow)}
           <p class="lead">Europass CV is a standardised CV format recognised by the European Union (EU). It is used across Europe for jobs, higher education, scholarships, internships and other academic or professional applications. It can be created online, free of charge, from Bangladesh.</p>
           <div class="box">
             <p style="margin-bottom:12px">This is the official Europass website of the European Union. No third-party website is needed.</p>
-            <a class="cta" href="https://europa.eu/europass/en/create-europass-cv" target="_blank" rel="noopener">Create Your Europass CV <span aria-hidden="true">→</span></a>
+            <a class="cta" href="https://europass.europa.eu/en/create-europass-cv?lang=en" target="_blank" rel="noopener">Create Your Europass CV <span aria-hidden="true">→</span></a>
             <span class="url">https://europa.eu/europass/en/create-europass-cv</span>
           </div>
         </div>
@@ -171,6 +176,9 @@ footer b{color:var(--yellow)}
             <li><i>4</i>You can create multiple CVs from the same profile for different applications.</li>
           </ul>
           <div class="note">Europass says CVs can be created, stored and shared in 31 languages. You can download your CV, store it in your Europass Library, or share it with employers, EURES or other job boards.</div>
+          <div class="link-actions">
+            <a class="cta secondary" href="https://eures.europa.eu/jobseekers/europass_en" target="_blank" rel="noopener">Explore Europass on EURES <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </section>
 
@@ -179,11 +187,14 @@ footer b{color:var(--yellow)}
           <span class="eyebrow">STEP 1</span>
           <h2>Access the Website</h2>
           <ul class="list">
-            <li><i>1</i>Go to the Official Website link above.</li>
+            <li><i>1</i>Open the official Europass website using the button below.</li>
             <li><i>2</i>Select English as the language.</li>
             <li><i>3</i>Click “Create my Europass” and follow the prompts to build your profile. Add education, training, work experience, language skills and digital skills.</li>
             <li><i>4</i>Register with a free EU Login if you want a permanent profile and access to your Europass Library. Guest users can still use the CV editor and download their CV, but cannot keep a permanent profile or use the Library.</li>
           </ul>
+          <div class="link-actions">
+            <a class="cta" href="https://europass.europa.eu/en/create-europass-cv?lang=en" target="_blank" rel="noopener">Open Official Europass Website <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </section>
 
