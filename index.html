@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,9 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0b2f8a;--blue2:#1747c4;--teal:#20b8ad;--teal-soft:#dff5f2;--ink:#1d2433;--muted:#5a6580;--soft:#f3f6fd;--line:#d9e0f0;--bg:#eef2fb;--card:#fff;--accent:#0b2f8a;--shadow:0 10px 30px rgba(11,47,138,.10)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8ecf6;--muted:#9aa5c0;--soft:#18233f;--line:#2a3658;--bg:#0b1120;--card:#121a30;--accent:#8fb0ff;--shadow:0 10px 30px rgba(0,0,0,.35)}}
-:root[data-theme="dark"]{--ink:#e8ecf6;--muted:#9aa5c0;--soft:#18233f;--line:#2a3658;--bg:#0b1120;--card:#121a30;--accent:#8fb0ff;--shadow:0 10px 30px rgba(0,0,0,.35)}
+:root{color-scheme:light;--blue:#0b2f8a;--blue2:#1747c4;--teal:#20b8ad;--teal-soft:#dff5f2;--ink:#172033;--muted:#64748b;--soft:#f7f9fc;--line:#e5eaf1;--bg:#ffffff;--card:#ffffff;--accent:#0b2f8a;--shadow:0 10px 30px rgba(11,47,138,.08)}
+:root[data-theme="light"]{color-scheme:light;--ink:#172033;--muted:#64748b;--soft:#f7f9fc;--line:#e5eaf1;--bg:#ffffff;--card:#ffffff;--accent:#0b2f8a;--shadow:0 10px 30px rgba(11,47,138,.08)}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#e8ecf6;--muted:#aab5cc;--soft:#18233f;--line:#2a3658;--bg:#0b1120;--card:#121a30;--accent:#8fb0ff;--shadow:0 10px 30px rgba(0,0,0,.35)}
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*:before,*:after{box-sizing:inherit}
@@ -362,13 +362,24 @@ footer b{color:var(--teal)}
   try{var sv=JSON.parse(localStorage.getItem('europass-check')||'[]');inputs.forEach(function(c,i){c.checked=!!sv[i]})}catch(e){}
   inputs.forEach(function(c){c.onchange=upd});upd();
 
-  /* theme */
+  /* theme: explicit light/dark modes; Light mode is always pure white */
   var root=document.documentElement;
-  try{var t=localStorage.getItem('europass-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
-  document.getElementById('theme').onclick=function(){
-    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
-    var n=dark?'light':'dark';root.setAttribute('data-theme',n);
-    try{localStorage.setItem('europass-theme',n)}catch(e){}
+  var themeButton=document.getElementById('theme');
+  function applyTheme(mode){
+    mode=mode==='dark'?'dark':'light';
+    root.setAttribute('data-theme',mode);
+    themeButton.textContent=mode==='light'?'☾':'☀';
+    themeButton.setAttribute('aria-label',mode==='light'?'Switch to dark mode':'Switch to light mode');
+    themeButton.setAttribute('title',mode==='light'?'Switch to dark mode':'Switch to light mode');
+  }
+  try{
+    var savedTheme=localStorage.getItem('europass-theme');
+    applyTheme(savedTheme==='dark'?'dark':'light');
+  }catch(e){applyTheme('light')}
+  themeButton.onclick=function(){
+    var nextTheme=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    applyTheme(nextTheme);
+    try{localStorage.setItem('europass-theme',nextTheme)}catch(e){}
   };
 
   fromHash();
